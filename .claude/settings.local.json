@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"https://api.github.com/repos/Haleclipse/CCometixLine/git/trees/master?recursive=1\")",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(cargo build)",
+      "Bash(where cargo)",
+      "Read(//d/Github/claude/claude-statusline-go/$USERPROFILE/.cargo/bin/**)",
+      "Read(//d/Github/claude/claude-statusline-go/$HOME/.cargo/bin/**)",
+      "Read(//c/Users/**)"
+    ]
+  }
+}

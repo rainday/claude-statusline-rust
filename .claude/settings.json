@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(export PATH=\"/c/Users/EricHsu/.cargo/bin:/c/Users/EricHsu/scoop/apps/mingw/current/bin:$PATH\")",
+      "Bash(rustup default stable-x86_64-pc-windows-gnu)",
+      "Bash(export PATH=\"$HOME/.cargo/bin:$PATH\")",
+      "Bash(cargo test)",
+      "Bash(cargo run)",
+      "Bash(target/debug/claude-statusline-rs.exe)",
+      "Bash(printf '{\"\"cwd\"\":\"\"d:/Github/claude/claude-statusline-go\"\"}')",
+      "Bash(cargo test --test integration)",
+      "Bash(echo \"$HOME/.cargo/bin\")",
+      "Read(//d/Github/claude/claude-statusline-go/$HOME/.cargo/bin/**)",
+      "Bash(rustup show)",
+      "Read(//d/Github/claude/claude-statusline-go/$HOME/.claude/**)",
+      "Bash(cargo build --release)"
+    ]
+  }
+}
