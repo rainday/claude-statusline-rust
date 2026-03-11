@@ -86,13 +86,22 @@ impl UsageSegment {
 
     fn get_usage_data(&self) -> Option<UsageData> {
         let cache_path = cache_path();
+
+        // Return fresh cache if still valid
         if let Some(cached) = cache::read_cache::<UsageData>(&cache_path, self.cache_ttl_secs) {
             return Some(cached);
         }
+
         let token = get_oauth_token()?;
-        let data = fetch_usage(&token)?;
-        cache::write_cache(&cache_path, &data);
-        Some(data)
+
+        // Try fresh fetch; on failure, fall back to stale cache
+        match fetch_usage(&token) {
+            Some(data) => {
+                cache::write_cache(&cache_path, &data);
+                Some(data)
+            }
+            None => cache::read_cache_stale::<UsageData>(&cache_path),
+        }
     }
 }
 
