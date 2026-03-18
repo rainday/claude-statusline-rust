@@ -22,9 +22,7 @@ pub fn read_cache<T: for<'de> Deserialize<'de> + Serialize>(
     Some(entry.data)
 }
 
-pub fn read_cache_stale<T: for<'de> Deserialize<'de> + Serialize>(
-    path: &PathBuf,
-) -> Option<T> {
+pub fn read_cache_stale<T: for<'de> Deserialize<'de> + Serialize>(path: &PathBuf) -> Option<T> {
     let content = fs::read_to_string(path).ok()?;
     let entry: CacheEntry<T> = serde_json::from_str(&content).ok()?;
     Some(entry.data)
