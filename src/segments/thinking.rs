@@ -8,7 +8,7 @@ pub struct ThinkingSegment;
 
 impl ThinkingSegment {
     pub fn render(&self, input: &InputData, theme: &ResolvedTheme) -> Option<SegmentOutput> {
-        let thinking_on = input.thinking.unwrap_or(false);
+        let thinking_on = input.thinking.as_ref().map(|t| t.is_on()).unwrap_or(false);
         let ansi = if thinking_on {
             theme.thinking_on_ansi
         } else {

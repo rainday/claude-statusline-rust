@@ -7,10 +7,26 @@ pub struct InputData {
     pub cwd: Option<String>,
     #[allow(dead_code)]
     pub session: Option<Session>,
-    pub thinking: Option<bool>,
+    pub thinking: Option<ThinkingField>,
     pub output_style: Option<OutputStyle>,
     #[allow(dead_code)]
     pub cost: Option<Cost>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(untagged)]
+pub enum ThinkingField {
+    Bool(bool),
+    Object { enabled: Option<bool> },
+}
+
+impl ThinkingField {
+    pub fn is_on(&self) -> bool {
+        match self {
+            ThinkingField::Bool(b) => *b,
+            ThinkingField::Object { enabled } => enabled.unwrap_or(false),
+        }
+    }
 }
 
 #[derive(Debug, Deserialize)]
@@ -85,7 +101,21 @@ mod tests {
             data.context_window.unwrap().context_window_size.unwrap(),
             200000
         );
-        assert_eq!(data.thinking.unwrap(), true);
+        assert_eq!(data.thinking.unwrap().is_on(), true);
+    }
+
+    #[test]
+    fn test_parse_thinking_object_schema() {
+        let json = r#"{ "thinking": { "enabled": true } }"#;
+        let data = InputData::from_json(json).unwrap();
+        assert_eq!(data.thinking.unwrap().is_on(), true);
+    }
+
+    #[test]
+    fn test_parse_thinking_object_disabled() {
+        let json = r#"{ "thinking": { "enabled": false } }"#;
+        let data = InputData::from_json(json).unwrap();
+        assert_eq!(data.thinking.unwrap().is_on(), false);
     }
 
     #[test]
