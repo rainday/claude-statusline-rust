@@ -46,10 +46,13 @@ is_windows() {
     [[ "$TARGET" == *"windows"* ]]
 }
 
-# Convert MSYS/Cygwin paths to Windows native paths for node/python
+# Convert MSYS/Cygwin paths to mixed-mode Windows paths (forward slashes).
+# Forward slashes are required because Claude Code runs statusLine.command
+# through Git Bash on Windows, where backslashes get consumed as escape
+# characters. Windows-native programs (node/python) accept this format too.
 to_native_path() {
     if is_windows && command -v cygpath &>/dev/null; then
-        cygpath -w "$1"
+        cygpath -m "$1"
     else
         echo "$1"
     fi
