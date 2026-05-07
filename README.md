@@ -8,8 +8,14 @@ A fast, segment-based statusline for Claude Code, written in Rust.
 
 ### One-line install
 
+**macOS / Linux / Git Bash:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/rainday/claude-statusline-rust/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/rainday/claude-statusline-rust/main/install.sh | bash
+```
+
+**Windows (PowerShell):** open Git Bash first, then run the command above. Or:
+```powershell
+& "C:\Program Files\Git\bin\bash.exe" -c "curl -fsSL https://raw.githubusercontent.com/rainday/claude-statusline-rust/main/install.sh | bash"
 ```
 
 ### cargo install
@@ -33,17 +39,17 @@ Then manually add to `~/.claude/settings.json`:
 
 In your Claude Code session, just ask:
 
-> Install claude-statusline-rs by running: `curl -fsSL https://raw.githubusercontent.com/rainday/claude-statusline-rust/main/install.sh | sh`
+> Install claude-statusline-rs by running: `curl -fsSL https://raw.githubusercontent.com/rainday/claude-statusline-rust/main/install.sh | bash`
 
 ## Uninstall
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/rainday/claude-statusline-rust/main/install.sh | sh -s uninstall
+curl -fsSL https://raw.githubusercontent.com/rainday/claude-statusline-rust/main/install.sh | bash -s uninstall
 ```
 
 Or from Claude Code, ask:
 
-> Uninstall claude-statusline-rs by running: `curl -fsSL https://raw.githubusercontent.com/rainday/claude-statusline-rust/main/install.sh | sh -s uninstall`
+> Uninstall claude-statusline-rs by running: `curl -fsSL https://raw.githubusercontent.com/rainday/claude-statusline-rust/main/install.sh | bash -s uninstall`
 
 ## Display
 
