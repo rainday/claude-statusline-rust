@@ -1,6 +1,6 @@
 [package]
 name = "claude-statusline-rs"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A custom statusline for Claude Code with segment-based architecture and Morandi color palette"
 license = "MIT"
