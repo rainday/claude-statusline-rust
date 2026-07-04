@@ -65,7 +65,7 @@ weekly   ●●●●●●●●○○  79%  ↻ mar 10, 10:00am
 | Segment | Description |
 |---------|-------------|
 | Directory | Current folder name |
-| Git | Branch name + dirty indicator |
+| Git | Branch + dirty indicator, worktree name (`⎇name`) in linked worktrees, and dev server port (`:PORT`) from a `.dev-port` file at the repo root |
 | Model | Current Claude model |
 | Context Window | Token usage % (color-coded) |
 | Thinking | Green dot when thinking, gray when not |
@@ -88,12 +88,26 @@ separator = " │ "
 [segments]
 enabled = ["directory", "git", "model", "context_window", "thinking", "effort", "usage", "tasks"]
 
+[git]
+show_worktree = true   # append ⎇<name> when inside a linked git worktree
+port_file = ".dev-port" # file read from repo root to show a dev server port; "" disables
+
 [theme]
 name = "morandi"
 
 [usage]
 cache_ttl_secs = 60
 ```
+
+### Dev server port
+
+To show a running backend's port, have your dev script write it to `.dev-port` at the repo/worktree root:
+
+```json
+"dev": "echo $PORT > .dev-port && vite --port $PORT"
+```
+
+Add `.dev-port` to `.gitignore`. The statusline reads the first line and only displays it if it's all digits.
 
 ### Custom Colors
 

@@ -12,6 +12,8 @@ pub struct Config {
     #[serde(default)]
     pub segments: SegmentsConfig,
     #[serde(default)]
+    pub git: GitConfig,
+    #[serde(default)]
     pub theme: ThemeConfig,
     #[serde(default)]
     pub usage: UsageConfig,
@@ -27,6 +29,26 @@ pub struct GeneralConfig {
 pub struct SegmentsConfig {
     #[serde(default = "defaults::enabled_segments")]
     pub enabled: Vec<String>,
+}
+
+#[derive(Debug, Deserialize, Clone)]
+pub struct GitConfig {
+    /// Append the worktree name when cwd is a linked git worktree.
+    #[serde(default = "defaults::git_show_worktree")]
+    pub show_worktree: bool,
+    /// Filename read from the worktree/repo root to display a dev server port.
+    /// Empty string disables port display.
+    #[serde(default = "defaults::git_port_file")]
+    pub port_file: String,
+}
+
+impl Default for GitConfig {
+    fn default() -> Self {
+        Self {
+            show_worktree: defaults::git_show_worktree(),
+            port_file: defaults::git_port_file(),
+        }
+    }
 }
 
 #[derive(Debug, Deserialize, Clone)]

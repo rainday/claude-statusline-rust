@@ -43,7 +43,7 @@ fn main() {
         }
     }
     if enabled.contains(&"git".into()) {
-        if let Some(out) = segments::git::GitSegment.render(&input, &theme) {
+        if let Some(out) = segments::git::GitSegment.render(&input, &theme, &config.git) {
             line1_parts.push(out.text);
         }
     }

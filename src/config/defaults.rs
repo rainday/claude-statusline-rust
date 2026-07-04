@@ -15,6 +15,14 @@ pub fn enabled_segments() -> Vec<String> {
     ]
 }
 
+pub fn git_show_worktree() -> bool {
+    true
+}
+
+pub fn git_port_file() -> String {
+    ".dev-port".into()
+}
+
 pub fn theme_name() -> String {
     "morandi".into()
 }
